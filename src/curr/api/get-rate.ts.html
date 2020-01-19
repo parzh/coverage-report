@@ -24,14 +24,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/21</span>
+                <span class='fraction'>0/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
@@ -45,7 +45,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
@@ -93,8 +93,7 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -106,15 +105,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -122,6 +113,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,30 +139,29 @@ const MAX_ATTEMPTS = <span class="cstat-no" title="statement not covered" >3;</s
 /** @private */
 async function <span class="fstat-no" title="function not covered" >_getRate(</span>code: string, attempts: number): Promise&lt;number&gt; {
 	if (<span class="cstat-no" title="statement not covered" >code </span>in rates === false) {
-		let <span class="cstat-no" title="statement not covered" >rate = 1;</span>
+		let <span class="cstat-no" title="statement not covered" >fetched: number | null = null;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >		if (attempts &gt; 0)</span>
-<span class="cstat-no" title="statement not covered" >			console.log(`Fetching "${ code }" (${ attempts } / ${ MAX_ATTEMPTS })`);</span>
+		while (<span class="cstat-no" title="statement not covered" >fetched == null &amp;&amp; attempts &lt; MAX_ATTEMPTS<span class="cstat-no" title="statement not covered" >)</span></span>
+			try {
+<span class="cstat-no" title="statement not covered" >				attempts++;</span>
 &nbsp;
-		try {
-<span class="cstat-no" title="statement not covered" >			attempts++;</span>
-<span class="cstat-no" title="statement not covered" >			rate = <span class="cstat-no" title="statement not covered" >await fetchRate(code);</span></span>
-		}
+<span class="cstat-no" title="statement not covered" >				if (attempts &gt; 1)</span>
+<span class="cstat-no" title="statement not covered" >					console.log(`Fetching "${ code }" (${ attempts } / ${ MAX_ATTEMPTS })`);</span>
 &nbsp;
-		catch (error) {
-<span class="cstat-no" title="statement not covered" >			console.warn(`Could not fetch actual rate of "${ code }"`);</span>
-<span class="cstat-no" title="statement not covered" >			console.error(error);</span>
+<span class="cstat-no" title="statement not covered" >				fetched = <span class="cstat-no" title="statement not covered" >await fetchRate(code);</span></span>
+			}
 &nbsp;
-			if (<span class="cstat-no" title="statement not covered" >attempts </span>&lt; MAX_ATTEMPTS)
-<span class="cstat-no" title="statement not covered" >				return <span class="cstat-no" title="statement not covered" >await _getRate(code, attempts);</span></span>
+			catch (error) {
+<span class="cstat-no" title="statement not covered" >				console.warn(`Could not fetch actual rate of "${ code }": ${ error }`);</span>
+			}
 &nbsp;
+<span class="cstat-no" title="statement not covered" >		if (fetched == null)</span>
 <span class="cstat-no" title="statement not covered" >			console.warn(`Reached fetch attempts limit; fallback "${ code }" to 1.00`);</span>
-		}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >		rates[code] = rate;</span>
+<span class="cstat-no" title="statement not covered" >		rates[code] = fetched ?? 1;</span>
 	}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	return rates[code];</span>
+<span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >	return rates[code];</span></span>
 }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export default async function <span class="fstat-no" title="function not covered" >g</span>etRate(</span>code: string): Promise&lt;number&gt; {
@@ -177,7 +174,7 @@ async function <span class="fstat-no" title="function not covered" >_getRate(</s
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Jan 19 2020 16:37:25 GMT+0000 (Coordinated Universal Time)
+                at Sun Jan 19 2020 16:49:14 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>
