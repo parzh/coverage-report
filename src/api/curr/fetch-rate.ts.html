@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/curr/api/to-uah.ts</title>
+    <title>Code coverage report for src/api/curr/fetch-rate.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/curr/api</a> to-uah.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/api/curr</a> fetch-rate.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -72,35 +72,74 @@
 <a name='L13'></a><a href='#L13'>13</a>
 <a name='L14'></a><a href='#L14'>14</a>
 <a name='L15'></a><a href='#L15'>15</a>
-<a name='L16'></a><a href='#L16'>16</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import rates from "./rates";</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/** @private */
+interface RatesDataRawItem {
+	// essential
+	rate: number;
+	cc: string;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export default function <span class="fstat-no" title="function not covered" >t</span>oUAH(</span>code: string, amount: number, decimalDigits?: number): string {
-	const converted = <span class="cstat-no" title="statement not covered" >amount * (rates[code] || 1);</span>
+	// junk
+	r030: number;
+	txt: string;
+	exchangedate: string;
+}
 &nbsp;
-	let result: string;
+/** @private */
+type RatesDataRaw = RatesDataRawItem[];
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	if (arguments.length &gt;= 3)</span>
-<span class="cstat-no" title="statement not covered" >		result = converted.toFixed(decimalDigits);</span>
+/** @private */
+const URL_BASE = <span class="cstat-no" title="statement not covered" >"https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json&amp;valcode=";</span>
 &nbsp;
-	else
-<span class="cstat-no" title="statement not covered" >		result = converted.toString();</span>
+/** @internal */
+<span class="cstat-no" title="statement not covered" >export default async function <span class="fstat-no" title="function not covered" >f</span>etchRate(</span>code: string): Promise&lt;number&gt; {
+<span class="cstat-no" title="statement not covered" >	if (code === "UAH")</span>
+<span class="cstat-no" title="statement not covered" >		return 1;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	return `${ result } UAH`;</span>
+	const <span class="cstat-no" title="statement not covered" >response = <span class="cstat-no" title="statement not covered" >await fetch(URL_BASE + code);</span></span>
+	const <span class="cstat-no" title="statement not covered" >[ data ] = <span class="cstat-no" title="statement not covered" >a</span>wait response.json() as RatesDataRaw;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >	return data.rate;</span>
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -109,7 +148,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon May 25 2020 11:21:08 GMT+0000 (Coordinated Universal Time)
+                at Mon May 25 2020 11:40:44 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>
