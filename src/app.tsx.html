@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
@@ -81,7 +81,23 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -89,8 +105,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -106,27 +124,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import React from "react";</span>
+<span class="cstat-no" title="statement not covered" >import { Provider } from "react-redux";</span>
 <span class="cstat-no" title="statement not covered" >import { BrowserRouter, Switch, Route } from "react-router-dom";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >import store from "./store";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >import HomePage from "./pages/home-page";</span>
+<span class="cstat-no" title="statement not covered" >import ProfilePage from "./pages/profile-page";</span>
+<span class="cstat-no" title="statement not covered" >import NotFoundPage from "./pages/not-found-page";</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >import WrapperFor404RedirectsFromGitHubPages from "./components/wrapper-for-404-redirects-from-github-pages";</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >import HomePage from "./pages/home-page";</span>
-<span class="cstat-no" title="statement not covered" >import NotFoundPage from "./pages/not-found-page";</span>
-&nbsp;
 <span class="cstat-no" title="statement not covered" >export default function <span class="fstat-no" title="function not covered" >A</span>pp(</span>): JSX.Element {
 <span class="cstat-no" title="statement not covered" >	return (</span>
-		&lt;BrowserRouter&gt;
-			&lt;Switch&gt;
-				&lt;Route exact path="/"&gt;
-					&lt;WrapperFor404RedirectsFromGitHubPages&gt;
-						&lt;HomePage /&gt;
-					&lt;/WrapperFor404RedirectsFromGitHubPages&gt;
-				&lt;/Route&gt;
-				&lt;Route path="*"&gt;
-					&lt;NotFoundPage /&gt;
-				&lt;/Route&gt;
-			&lt;/Switch&gt;
-		&lt;/BrowserRouter&gt;
+		&lt;Provider store={store}&gt;
+			&lt;BrowserRouter&gt;
+				&lt;Switch&gt;
+					&lt;Route exact path="/"&gt;
+						&lt;WrapperFor404RedirectsFromGitHubPages&gt;
+							&lt;HomePage /&gt;
+						&lt;/WrapperFor404RedirectsFromGitHubPages&gt;
+					&lt;/Route&gt;
+					&lt;Route exact path="/profile"&gt;
+						&lt;ProfilePage /&gt;
+					&lt;/Route&gt;
+					&lt;Route path="*"&gt;
+						&lt;NotFoundPage /&gt;
+					&lt;/Route&gt;
+				&lt;/Switch&gt;
+			&lt;/BrowserRouter&gt;
+		&lt;/Provider&gt;
 	);
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -136,7 +163,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon May 25 2020 21:10:39 GMT+0000 (Coordinated Universal Time)
+                at Wed May 27 2020 15:34:56 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

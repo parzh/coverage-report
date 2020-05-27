@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/pages/home-page.tsx</title>
+    <title>Code coverage report for src/pages/page.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/pages</a> home-page.tsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/pages</a> page.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">26.67% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>4/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">36.36% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>4/11</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -98,10 +98,8 @@
 <a name='L39'></a><a href='#L39'>39</a>
 <a name='L40'></a><a href='#L40'>40</a>
 <a name='L41'></a><a href='#L41'>41</a>
-<a name='L42'></a><a href='#L42'>42</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -112,11 +110,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -134,50 +141,46 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
-import { Link } from "react-router-dom";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState, useEffect } from "react";
 &nbsp;
-import Page from "src/pages/page";
+import type Breadcrumbs from "src/typings/breadcrumbs";
+import { createList } from "src/components/breadcrumbs/breadcrumb-item";
 &nbsp;
 /** @private */
-const styleFor: Record&lt;string, React.CSSProperties&gt; = {
-	iconContainer: {
-		verticalAlign: "middle",
-	},
-	icon: {
-		cursor: "help",
-		fontSize: "small",
-	},
-};
+interface Props extends React.HTMLAttributes&lt;"div"&gt; {
+	breadcrumbs?: Breadcrumbs;
+}
 &nbsp;
-export default function HomePage(): JSX.Element {
-	return (
-		&lt;Page className="justify-content-center align-items-stretch"&gt;
-			&lt;div className="text-center"&gt;
-				&lt;Link to="/profile"&gt;Go to profile page&lt;/Link&gt;
+/** @private */
+const empty: Breadcrumbs = Object.create(null);
 &nbsp;
-				&lt;span className="ml-1"&gt;or&lt;/span&gt;
+export default function <span class="fstat-no" title="function not covered" >Page(</span>{
+	children<span class="cstat-no" title="statement not covered" >,</span>
+<span class="cstat-no" title="statement not covered" >	className<span class="cstat-no" title="statement not covered" > </span>= "",</span>
+<span class="cstat-no" title="statement not covered" >	breadcrumbs<span class="cstat-no" title="statement not covered" > </span>= empty,</span>
+}: Props): JSX.Element {
+	const <span class="cstat-no" title="statement not covered" >[ breadcrumbItems<span class="cstat-no" title="statement not covered" >, s</span>etBreadcrumbItems<span class="cstat-no" title="statement not covered" > ] = u</span>seState&lt;JSX.Element[]&gt;([]);</span>
 &nbsp;
-				&lt;span className="ml-1"&gt;
-					&lt;Link to="/launch"&gt;launch a rocket 🚀 to Mars&lt;/Link&gt;
+<span class="cstat-no" title="statement not covered" >	useEffect(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >		setBreadcrumbItems(createList(breadcrumbs));</span>
+	}, [ breadcrumbs, setBreadcrumbItems ]);
 &nbsp;
-					&lt;span style={styleFor.iconContainer}&gt;
-						&lt;i
-							className="material-icons ml-1 text-muted"
-							style={styleFor.icon}
-							title="No rockets for now, I'm just taking the opportunity to show 404 page"
-						&gt;
-							help_outline
-						&lt;/i&gt;
-					&lt;/span&gt;
-				&lt;/span&gt;
-			&lt;/div&gt;
-		&lt;/Page&gt;
+<span class="cstat-no" title="statement not covered" >	return (</span>
+		&lt;&gt;
+			&lt;section className="d-flex flex-column h-100"&gt;
+				{breadcrumbItems.length &gt; 0 &amp;&amp; (
+					&lt;nav className="navbar navbar-light bg-light flex-shrink-0 justify-content-start"&gt;
+						{breadcrumbItems}
+					&lt;/nav&gt;
+				)}
+&nbsp;
+				&lt;div className="container-fluid flex-grow-1 d-flex"&gt;
+					&lt;div className={"container flex-fill d-flex flex-column " + className}&gt;
+						{children}
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/section&gt;
+		&lt;/&gt;
 	);
 }
 &nbsp;</pre></td></tr></table></pre>
